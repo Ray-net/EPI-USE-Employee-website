@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="/css/tablestyle.css">
+			<script src="/axios/axios.min.js"></script>
+			<title>Employee records</title>
+		</head>
+		<body>
+			<div class="topbarmenu" id="topbar">
+				<a href="/">Tree</a>
+				<a href="/table-view">Table</a>
+			</div>
+			<br/>
+
+			<h2>Responsive Table</h2>
+			<div class="table-wrapper">
+				<table class="fl-table">
+					<thead>
+					<tr>
+						<th>Employee Number</th>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Birth Day</th>
+						<th>Role</th>
+						<th>Manager</th>
+						<th>Salary</th>
+						<th>E-mail</th>
+						
+					</tr>
+					</thead>
+					<tbody id="populate">
+					
+					<tbody>
+				</table>
+			</div>
+			<script src="/js/tableLogic.js"></script>
+		</body>
+	</html>
