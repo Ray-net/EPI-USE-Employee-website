@@ -173,6 +173,10 @@ $(".searchbtn").on("click", async function () {
       employee = employeeData[i].employeeNumber;
       break;
     }
+    if (nameValue.toLowerCase().trim() == (employeeData[i].name.toLowerCase().trim()+ ' '+employeeData[i].surname.toLowerCase().trim())) {
+      employee = employeeData[i].employeeNumber;
+      break;
+    }
   }
   if(employee == undefined)
   {

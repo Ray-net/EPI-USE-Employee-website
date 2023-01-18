@@ -56,7 +56,7 @@ function closeForm() {
 $("#delete").on("click", function () {
       axios
       .get(`http://localhost:5000/api/delete?id=${searcharray[1]}`).then(response => {
-        location.href = '/';
+        location.replace('/');
       }).catch((error) => console.log(error)); 
 });
 
@@ -71,6 +71,11 @@ $("#editdata").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
+  if(dob == undefined || dob == '')
+  {
+    alert("Please add a birth day");
+    return;
+  }
   if (manager == employeenr) {
     alert("You may not be your own manager");
     return;
@@ -93,5 +98,7 @@ $("#editdata").on("click", function () {
     })
     .then(alert("success"))
     .catch((error) => console.log(error));
-  location.reload();
+  location.replace(`/view-employee?id=${employeenr}`);
 });
+
+
