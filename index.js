@@ -3,7 +3,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();             
-const port = 5000;    
+const port = process.env.PORT || 5000;    
+
+
+
+
 const mongoConnect = require('./server/database');
 mongoConnect();              
 app.use(bodyParser.json());
