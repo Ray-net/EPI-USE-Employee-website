@@ -229,7 +229,8 @@ function populateManagers() {
   const selector = document.querySelector(".managerSelect");
   html = '<option value="all">Show All</option>';
   for (let [key, value] of managementMap) {
-    alert(value);
+    console.log(typeof value);
+    console.log(value);
     if (value != []) {
       let fullname =
         employeesMap.get(key).name + " " + employeesMap.get(key).surname;
