@@ -146,6 +146,11 @@ $("#editdata").on("click", function () {
     alert("Need an existing manager");
     return;
   }
+  if(dob == undefined || dob == '')
+  {
+    alert("Date of Birth need a value");
+    return;
+  }
   axios
     .post(`https://epi-use-employee-tree.herokuapp.com/api/update`, {
       originalId: searcharray[1],

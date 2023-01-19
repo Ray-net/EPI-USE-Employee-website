@@ -197,11 +197,7 @@ $(".create").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
-  if( salary == '')
-  {
-    alert("Salary must be entered")
-    return;
-  }
+  
   if( name == '')
   {
     alert("Name must be entered")
@@ -222,6 +218,11 @@ $(".create").on("click", function () {
     alert("Surname must be entered")
     return;
   }
+  if( salary == '')
+  {
+    alert("Salary must be entered")
+    return;
+  }
   if(isNaN(salary))
   {
     alert("Salary must be a number")
@@ -233,6 +234,11 @@ $(".create").on("click", function () {
   }
   if (role != "CEO" && manager == "") {
     alert("You require a manager");
+    return;
+  }
+  if(dob == undefined || dob == '')
+  {
+    alert("Date of Birth need a value");
     return;
   }
   if(manager != '' && manager != undefined && employeesMap.get(manager) == undefined)
