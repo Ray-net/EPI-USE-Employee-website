@@ -133,6 +133,11 @@ $("#editdata").on("click", function () {
     alert("Salary must be a number")
     return;
   }
+  if(typeof dob == 'number')
+  {
+    alert("Date of Birth must be a date")
+    return;
+  }
   if (manager == employeenr) {
     alert("You may not be your own manager");
     return;
