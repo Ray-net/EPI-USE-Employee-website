@@ -183,6 +183,13 @@ function filterTableAge() {
       tablesort(tr, 60, 70);
       break;
     }
+    case 'all':
+      {
+        for (i = 0; i < tr.length; i++) {
+          tr[i].style.display = "";
+        }
+        break;
+      }
 
     default: {
       for (i = 0; i < tr.length; i++) {
@@ -211,7 +218,7 @@ function tablesort(tr, min, max) {
 
 function populateRoles(roles) {
   const selector = document.querySelector(".roleSelect");
-  html = '<option value="all">All Roles</option>';
+  html = '<option value="all">Show All</option>';
   for (let i = 0; i < roles.length; i++) {
     html += `<option value="${roles[i]}">${roles[i]}</option>`;
   }
@@ -220,7 +227,7 @@ function populateRoles(roles) {
 
 function populateManagers() {
   const selector = document.querySelector(".managerSelect");
-  html = '<option value="all">All Mangers</option>';
+  html = '<option value="all">Show All</option>';
   for (let [key, value] of managementMap) {
     alert(value);
     if (value != []) {
