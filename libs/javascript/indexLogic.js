@@ -197,6 +197,11 @@ $(".create").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
+  if(typeof salary == 'number')
+  {
+    alert("Salary must be a number")
+    return;
+  }
   if (manager == employeenr) {
     alert("You may not be your own manager");
     return;
