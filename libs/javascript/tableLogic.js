@@ -14,7 +14,7 @@ let employeesMap = new Map();
 let managementMap = new Map();
 window.addEventListener("load", function () {
   axios
-    .get(`http://localhost:5000/api/findall`)
+    .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
     .then((response) => {
       let employeeData = response.data;
       let html = "";

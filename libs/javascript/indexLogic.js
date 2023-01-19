@@ -18,7 +18,7 @@ const managementMap = new Map();
 const employeesMap = new Map();
 window.addEventListener("load", function () {
   axios
-    .get(`http://localhost:5000/api/findall`)
+    .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
     .then(async (response) => {
       //console.log('hetre');
       //console.log(response.data);
@@ -108,7 +108,7 @@ async function buildTree(employeeNr) {
     console.log('here');
     let element = await axios
       .get(
-        `http://localhost:5000/api/encrypt?str=${employee.email
+        `https://epi-use-employee-tree.herokuapp.com/api/encrypt?str=${employee.email
           .trim()
           .toLowerCase()}`
       )
@@ -212,7 +212,7 @@ $(".create").on("click", function () {
   }
 
   axios
-    .post(`http://localhost:5000/api/create`, {
+    .post(`https://epi-use-employee-tree.herokuapp.com/api/create`, {
       name: name,
       surname: surname,
       dob: dob,

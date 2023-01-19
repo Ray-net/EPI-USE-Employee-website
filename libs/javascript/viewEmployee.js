@@ -3,7 +3,7 @@ let searcharray = employeenr.split("=");
 function loadEmployeeData() {
   console.log("data");
   axios
-    .get(`http://localhost:5000/api/findone?id=${searcharray[1]}`)
+    .get(`https://epi-use-employee-tree.herokuapp.com/api/findone?id=${searcharray[1]}`)
     .then((response) => {
       document.querySelector("#name").value = response.data.name;
       document.querySelector("#employeenr").value =
@@ -24,11 +24,11 @@ function loadEmployeeData() {
       document.querySelector(".salary").innerHTML +=
         "R " + response.data.salary;
       axios
-        .get(`http://localhost:5000/api/encrypt?str=${response.data.email.trim().toLowerCase()}`)
+        .get(`https://epi-use-employee-tree.herokuapp.com/api/encrypt?str=${response.data.email.trim().toLowerCase()}`)
         .then((response) => {
           document.getElementById(
             "images"
-          ).src = `http://www.gravatar.com/avatar/${response.data.split("= ")[1].trim()}?s=200`;
+          ).src = `https://www.gravatar.com/avatar/${response.data.split("= ")[1].trim()}?s=200`;
         })
         .catch((error) => console.log(error));
 
@@ -55,7 +55,7 @@ function closeForm() {
 
 $("#delete").on("click", function () {
       axios
-      .get(`http://localhost:5000/api/delete?id=${searcharray[1]}`).then(response => {
+      .get(`https://epi-use-employee-tree.herokuapp.com/api/delete?id=${searcharray[1]}`).then(response => {
         location.replace('/');
       }).catch((error) => console.log(error)); 
 });
@@ -85,7 +85,7 @@ $("#editdata").on("click", function () {
     return;
   }
   axios
-    .post(`http://localhost:5000/api/update`, {
+    .post(`https://epi-use-employee-tree.herokuapp.com/api/update`, {
       originalId: searcharray[1],
       name: name,
       surname: surname,
