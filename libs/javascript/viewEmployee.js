@@ -103,7 +103,32 @@ $("#editdata").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
-  if(typeof salary == 'number')
+  if( salary == '')
+  {
+    alert("Salary must be entered")
+    return;
+  }
+  if( name == '')
+  {
+    alert("Name must be entered")
+    return;
+  }
+  if( employeenr == '')
+  {
+    alert("Employee number must be entered")
+    return;
+  }
+  if( role == '')
+  {
+    alert("Role must be entered")
+    return;
+  }
+  if( surname == '')
+  {
+    alert("Surname must be entered")
+    return;
+  }
+  if(isNaN(salary))
   {
     alert("Salary must be a number")
     return;
