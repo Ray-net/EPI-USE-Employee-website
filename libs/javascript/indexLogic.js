@@ -251,6 +251,10 @@ $(".create").on("click", function () {
     alert("Need an existing manager");
     return;
   }
+  if (role == "CEO") {
+    manager = '';
+  }
+  
 
   axios
     .post(`https://epi-use-employee-tree.herokuapp.com/api/create`, {

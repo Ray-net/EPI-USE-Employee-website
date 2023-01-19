@@ -151,6 +151,9 @@ $("#editdata").on("click", function () {
     alert("Need an existing manager");
     return;
   }
+  if (role == "CEO") {
+    manager = '';
+  }
   if(dob == undefined || dob == '')
   {
     alert("Date of Birth need a value");
