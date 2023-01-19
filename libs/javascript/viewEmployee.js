@@ -42,7 +42,7 @@ function loadEmployeeData() {
         response.data.employeeNumber;
       document.querySelector("#surname").value = response.data.surname;
       console.log(typeof response.data.dateOfBirth);
-      document.querySelector("#dob").value = Date.parse(response.data.dateOfBirth);
+      document.querySelector("#dob").value = response.data.dateOfBirth.substr(0, 10);;
       document.querySelector("#salary").value = response.data.salary;
       document.querySelector("#manager").value = response.data.manager;
       document.querySelector("#role").value = response.data.role;
