@@ -223,6 +223,11 @@ $(".create").on("click", function () {
     alert("Salary must be entered")
     return;
   }
+  if(typeof dob == 'number')
+  {
+    alert("Date of Birth must be a date")
+    return;
+  }
   if(isNaN(salary))
   {
     alert("Salary must be a number")
