@@ -8,7 +8,7 @@ h2 {
 }
 
 
-.table-sortable {
+.sortable {
   border-radius: 5px;
   font-size: 12px;
   font-weight: normal;
@@ -20,53 +20,53 @@ h2 {
   background-color: white;
 }
 
-.table-sortable td,
-.table-sortable th {
+.sortable td,
+.sortable th {
   text-align: center;
   padding: 8px;
 }
 
-.table-sortable td {
+.sortable td {
   border-right: 1px solid #f8f8f8;
   font-size: 12px;
 }
 
-.table-sortable thead th {
+.sortable thead th {
   color: #ffffff;
   background: #4fc3a1;
 }
 
-.table-sortable thead th:nth-child(odd) {
+.sortable thead th:nth-child(odd) {
   color: #ffffff;
   background: #324960;
 }
 
-.table-sortable tr:nth-child(even) {
+.sortable tr:nth-child(even) {
   background: #f8f8f8;
 }
 
-.table-sortable th {
+.sortable th {
   cursor: pointer;
 }
 
-.table-sortable .th-sort-asc::after {
+.sortable .asc::after {
   content: "\25b4";
 }
 
-.table-sortable .th-sort-desc::after {
+.sortable .desc::after {
   content: "\25be";
 }
 
-.table-sortable .th-sort-asc::after,
-.table-sortable .th-sort-desc::after {
+.sortable .asc::after,
+.sortable .desc::after {
   margin-left: 5px;
 }
 @media (max-width: 750px) {
-  .table-sortable {
+  .sortable {
     display: block;
     width: 100%;
   }
-  .table-sortable:before {
+  .sortable:before {
     content: "Scroll horizontally >";
     display: block;
     text-align: right;
@@ -74,24 +74,24 @@ h2 {
     color: white;
     padding: 0 0 10px;
   }
-  .table-sortable thead,
-  .table-sortable tbody,
-  .table-sortable thead th {
+  .sortable thead,
+  .sortable tbody,
+  .sortable thead th {
     display: block;
   }
-  .table-sortable thead th:last-child {
+  .sortable thead th:last-child {
     border-bottom: none;
   }
-  .table-sortable thead {
+  .sortable thead {
     float: left;
   }
-  .table-sortable tbody {
+  .sortable tbody {
     width: auto;
     position: relative;
     overflow-x: auto;
   }
-  .table-sortable td,
-  .fl-table th {
+  .sortable td,
+  .sortable th {
     padding: 20px 0.625em 0.625em 0.625em;
     height: 60px;
     vertical-align: middle;
@@ -102,27 +102,27 @@ h2 {
     font-size: 13px;
     text-overflow: ellipsis;
   }
-  .table-sortable thead th {
+  .sortable thead th {
     text-align: left;
     border-bottom: 1px solid #f7f7f9;
   }
-  .table-sortable tbody tr {
+  .sortable tbody tr {
     display: table-cell;
   }
-  .table-sortable tbody tr:nth-child(odd) {
+  .sortable tbody tr:nth-child(odd) {
     background: none;
   }
-  .table-sortable tr:nth-child(even) {
+  .sortable tr:nth-child(even) {
     background: transparent;
   }
-  .table-sortable tr td:nth-child(odd) {
+  .sortable tr td:nth-child(odd) {
     background: #f8f8f8;
     border-right: 1px solid #e6e4e4;
   }
-  .table-sortable tr td:nth-child(even) {
+  .sortable tr td:nth-child(even) {
     border-right: 1px solid #e6e4e4;
   }
-  .table-sortable tbody td {
+  .sortable tbody td {
     display: block;
     text-align: center;
   }
@@ -163,4 +163,27 @@ h2 {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+.roleSelect{
+
+  background: blue;
+  color: white;
+  display: inline-block;
+}
+.ageSelect{
+  position: relative;
+  width: max-content;
+  background: blue;
+  color: white;
+  display: inline-block;
+}
+.selectorcontainer{
+  background: lightgray;
+  width: fit-content;
+  float: auto;
+}
+.managerSelect{
+  background: blue;
+  color: white;
+  display: inline-block;
 }
