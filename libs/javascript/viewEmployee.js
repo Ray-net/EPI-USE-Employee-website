@@ -41,6 +41,7 @@ function loadEmployeeData() {
       document.querySelector("#employeenr").value =
         response.data.employeeNumber;
       document.querySelector("#surname").value = response.data.surname;
+      alert(response.data.dateOfBirth);
       document.querySelector("#dob").value = response.data.dateOfBirth;
       document.querySelector("#salary").value = response.data.salary;
       document.querySelector("#manager").value = response.data.manager;
