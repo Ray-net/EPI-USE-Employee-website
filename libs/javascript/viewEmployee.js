@@ -1,6 +1,38 @@
 let employeenr = window.location.search;
 let searcharray = employeenr.split("=");
+const managementMap = new Map();
+const employeesMap = new Map();
 function loadEmployeeData() {
+  axios
+    .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
+    .then(async (response) => {
+      //console.log('hetre');
+      //console.log(response.data);
+      employeeData = response.data;
+      //console.log(employeeData);
+      for (let i = 0; i < employeeData.length; i++) {
+        employeesMap.set(employeeData[i].employeeNumber, employeeData[i]);
+      }
+
+      for (let i = 0; i < employeeData.length; i++) {
+        if (!managementMap.get(employeeData[i].employeeNumber)) {
+          managementMap.set(employeeData[i].employeeNumber, []);
+        }
+
+        if (employeeData[i].manager != "") {
+          if (managementMap.get(employeeData[i].manager)) {
+            let workerArray = managementMap.get(employeeData[i].manager);
+            workerArray.push(employeeData[i].employeeNumber);
+            managementMap.set(employeeData[i].manager, workerArray);
+          } else {
+            let workerArray = [];
+            workerArray.push(employeeData[i].employeeNumber);
+            managementMap.set(employeeData[i].manager, workerArray);
+          }
+        }
+      }
+    })
+    .catch((error) => console.log(error));
   console.log("data");
   axios
     .get(`https://epi-use-employee-tree.herokuapp.com/api/findone?id=${searcharray[1]}`)
@@ -71,9 +103,9 @@ $("#editdata").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
-  if(dob == undefined || dob == '')
+  if(typeof salary == 'number')
   {
-    alert("Please add a birth day");
+    alert("Salary must be a number")
     return;
   }
   if (manager == employeenr) {
@@ -82,6 +114,11 @@ $("#editdata").on("click", function () {
   }
   if (role != "CEO" && manager == "") {
     alert("You require a manager");
+    return;
+  }
+  if(manager != '' && manager != undefined && employeesMap.get(manager) == undefined)
+  {
+    alert("Need an existing manager");
     return;
   }
   axios
