@@ -206,6 +206,10 @@ $(".create").on("click", function () {
   var manager = document.getElementById("manager").value;
   var role = document.getElementById("role").value;
   var email = document.getElementById("email").value;
+  if (employeesMap.get(employeenr) != undefined) {
+    alert("You need a unique employee number");
+    return;
+  }
   
   if( name == '')
   {
