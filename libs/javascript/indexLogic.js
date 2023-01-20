@@ -6,16 +6,16 @@ const roles = {
 };
 //name, surname, birth date, employee number, salary,
 //role/position, and reporting line manager.
-var employeeData = [];
-/*
-      Description: get the employee data from database then calls buildtree on the load of index.html.
-      input: none
-      output: none
-  
-  */
 
+// map to store list of managers with their subordinates
 const managementMap = new Map();
+//map of all employees map with their employee number to make employee lookup faster
 const employeesMap = new Map();
+var employeeData = [];
+/**
+ *  @description load event gets the employees data from database then calls 
+ *      buildtree on the load of index.html.
+ */
 window.addEventListener("load", function () {
   axios
     .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
@@ -68,12 +68,10 @@ window.addEventListener("load", function () {
     .catch((error) => console.log(error));
 });
 
-/*
- *       @Description: function that builds a hierarchy tree through the given start member of the
- *                     employee list and returns an HTML string.
- *       @input: Employee nr,
- *       @output: String of HTML
- *
+/**
+ *  @description creates the html to build and shows the tree
+ *  @param employeeNr holds the root employee from where to build the tree
+ * @returns html data in String format
  */
 async function buildTree(employeeNr) {
   let workerArray = managementMap.get(employeeNr);
@@ -145,17 +143,24 @@ async function buildTree(employeeNr) {
       
   }
 }
-function log() {
-  console.log("here");
-}
+
+/**
+ *  @description shows the popup create employee page
+ */
 
 function openForm() {
   document.getElementById("modalOne").style.display = "block";
 }
+/**
+ *  @description hides the create employee popup page
+ */
 function closeForm() {
   document.getElementById("modalOne").style.display = "none";
 }
-
+/**
+ *  @description search tree event
+ * @returns redirects user to employee page if the employee information provided is correct
+ */
 $(".searchbtn").on("click", async function () {
   var nameValue = document.getElementById("search").value;
   var employee;
@@ -187,7 +192,11 @@ $(".searchbtn").on("click", async function () {
   }
   
 });
-
+/**
+ *  @description creates a new user event with the filled in data
+ * @returns return to index/tree view page
+ * @returns error message if user did not fill in form correctly
+ */
 $(".create").on("click", function () {
   var name = document.getElementById("name").value;
   var employeenr = document.getElementById("employeenr").value;

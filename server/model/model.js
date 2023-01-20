@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-const roles = {
-    CEO: "CEO",
-    Manager: "Manager",
-    Employee: "Employee",
-    Intern: "Intern",
-  };
+/**
+ *  @description model for the MongoDB employees
+ */
 
 var schema = new mongoose.Schema({
     name : {

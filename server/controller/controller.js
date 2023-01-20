@@ -5,7 +5,11 @@ const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 const path = require("path");
 var md5 = require("nodejs-md5");
-
+/**
+ *  @description upload to server envirment
+ *  @param req holds the data used to upload image
+ * @param res used to show what actions will be performed after function executes
+ */
 exports.upload = (req, res) => {
   // validate request
   if (!req.body) {
@@ -21,15 +25,19 @@ exports.upload = (req, res) => {
     return filePath;
   });
 };
-// create and save new user
+/**
+ *  @description upload to MongoDB. creates new employee
+ *  @param req holds the data used to create the new user
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns redirects the user to the tree view page
+ */
 exports.create = (req, res) => {
-  // validate request
   if (!req.body) {
     res.status(400).send({ message: "Content can not be emtpy!" });
     return;
   }
 
-  // new user
   const createEmployee = new employee({
     name: req.body.name,
     surname: req.body.surname,
@@ -42,11 +50,9 @@ exports.create = (req, res) => {
   });
   console.log(createEmployee);
 
-  // save user in the database
   createEmployee
     .save(createEmployee)
     .then((data) => {
-      //res.send(data)
       res.redirect("/");
     })
     .catch((err) => {
@@ -57,8 +63,13 @@ exports.create = (req, res) => {
       });
     });
 };
-
-// retrieve and return all users
+/**
+ *  @description find all employees in MongoDB database
+ *  @param req holds the data used to find all users
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns return the wanted employees
+ */
 exports.find = (req, res) => {
   employee
     .find()
@@ -74,6 +85,13 @@ exports.find = (req, res) => {
         });
     });
 };
+/**
+ *  @description find one employees in MongoDB database
+ *  @param req holds the data used to find  the employee
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns return the wanted employee
+ */
 exports.findone = (req, res) => {
   if (req.query.id) {
     const id = req.query.id;
@@ -92,7 +110,15 @@ exports.findone = (req, res) => {
       });
   }
 };
-// Update a new idetified user by user id
+/**
+ *  @description updates one employee in MongoDB database. Changes the 
+ *    employee manager fields of other employees if this employee was their 
+ *    manager if the employee number is updated
+ *  @param req holds the data used to update the employee
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns return the wanted employee
+ */
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Data to update can not be empty" });
@@ -175,7 +201,13 @@ exports.update = (req, res) => {
       res.status(500).send({ message: "Error Update user information" });
     });
 };
-//{ u1 : { $gt :  30, $lt : 60}}
+/**
+ *  @description finds all employees in MongoDB database taht is in range.
+ *  @param req holds the data used to find the employees
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns return the wanted employees
+ */
 exports.findsalaryrange = (req, res) => {
   if (req.params.min && req.params.max) {
     const min = req.params.min;
@@ -196,8 +228,15 @@ exports.findsalaryrange = (req, res) => {
       });
   }
 };
-
-// Delete a employee with specified employee number in the request
+/**
+ *  @description deletes one employee in MongoDB database. Changes the 
+ *    employee manager fields of other employees if this employee was their 
+ *    manager
+ *  @param req holds the data used to update the employee
+ * @param res used to show what actions will be performed after function executes
+ * @returns error message if any error occur with MongoDB or req param are incorrect
+ * @returns redirect the user to the tree view page
+ */
 exports.delete = (req, res) => {
   const id = req.query.id;
   employee

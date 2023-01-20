@@ -1,3 +1,8 @@
+/**
+ *  @description adds events to the header of each colum of the table to be able to sort the table
+ *  @param column holds the colmn currently being refered to
+ */
+
 document.querySelectorAll(".sortable th").forEach((column) => {
   column.addEventListener("click", () => {
     const tableData = column.parentElement.parentElement.parentElement;
@@ -10,8 +15,16 @@ document.querySelectorAll(".sortable th").forEach((column) => {
     SortTable(tableData, IndexOfHead, !setAsc);
   });
 });
+// map to store list of managers with their subordinates
 let employeesMap = new Map();
+//map of all employees map with their employee number to make employee lookup faster
 let managementMap = new Map();
+// to hold all employee information
+var employeeData = [];
+/**
+ *  @description load event gets the employees data from database then calls 
+ *      buildtable also calls to populate all dropdowns
+ */
 window.addEventListener("load", function () {
   axios
     .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
@@ -50,7 +63,11 @@ window.addEventListener("load", function () {
     })
     .catch((error) => console.log(error));
 });
-
+/**
+ *  @description creates the html to build and shows the table
+ *  @param employeeData holds all employees data
+ * @returns html data in String format
+ */
 function buildtable(employeeData) {
   console.log("here");
   console.log(employeeData);
@@ -68,6 +85,12 @@ function buildtable(employeeData) {
   }
   return html;
 }
+/**
+ *  @description function to sort the table according to the column provided
+ * @param table holds reference to the table to sort
+ * @param column  holds the reference to the column to sort by
+ * @param asc holds the direction in which to sort 
+ */
 function SortTable(table, column, asc = true) {
   const dirModifier = asc ? 1 : -1;
   const tBody = table.tBodies[0];
@@ -97,7 +120,10 @@ function SortTable(table, column, asc = true) {
     .querySelector(`th:nth-child(${column + 1})`)
     .classList.toggle("desc", !asc);
 }
-
+/**
+ *  @description function to only make the applicable information in the table
+ * visible
+ */
 function filterTableRole() {
   const RoleSelect = document.querySelector(".roleSelect");
   var filter, table, tr, td, i, txtValue;
@@ -123,7 +149,10 @@ function filterTableRole() {
     }
   }
 }
-
+/**
+ *  @description function to only make the applicable information in the table
+ * visible
+ */
 function filterTableManger() {
   const RoleSelect = document.querySelector(".managerSelect");
   var filter, table, tr, td, i, txtValue;
@@ -149,7 +178,10 @@ function filterTableManger() {
     }
   }
 }
-
+/**
+ *  @description function to only make the applicable information in the table
+ * visible
+ */
 function filterTableAge() {
   const RoleSelect = document.querySelector(".ageSelect");
   var filter, table, tr;
@@ -215,7 +247,10 @@ function tablesort(tr, min, max) {
     }
   }
 }
-
+/**
+ *  @description populates the Roles dropdown list
+ *  @param roles of all availible roles in the table
+ */
 function populateRoles(roles) {
   const selector = document.querySelector(".roleSelect");
   html = '<option value="all">Show All</option>';
@@ -224,7 +259,9 @@ function populateRoles(roles) {
   }
   selector.innerHTML = html;
 }
-
+/**
+ *  @description populates the Managers dropdown list
+ */
 function populateManagers() {
   const selector = document.querySelector(".managerSelect");
   html = '<option value="all">Show All</option>';
@@ -237,7 +274,11 @@ function populateManagers() {
   }
   selector.innerHTML = html;
 }
-
+/**
+ *  @description calculates age of a employee based on there date of birth
+ *  @param dateString Date of birth to calculate age for
+ * @returns age of the given person based on input provided
+ */
 function getAge(dateString) {
   
   var today = new Date();
@@ -249,7 +290,10 @@ function getAge(dateString) {
   }
   return age;
 }
-
+/**
+ *  @description function to only make the applicable information in the table
+ * visible
+ */
 function filterSalary()
 {
   var table, tr, td, txtValue;
@@ -270,7 +314,4 @@ function filterSalary()
       }
     }
   }
-
-
-  
 }

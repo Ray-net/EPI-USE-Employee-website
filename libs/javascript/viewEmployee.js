@@ -1,7 +1,14 @@
 let employeenr = window.location.search;
 let searcharray = employeenr.split("=");
+// map to store list of managers with their subordinates
 const managementMap = new Map();
+//map of all employees map with their employee number to make employee lookup faster
 const employeesMap = new Map();
+/**
+ *  @description load event gets the employee data from database to 
+ * populate the employee profile and edit form
+ *      
+ */
 function loadEmployeeData() {
   axios
     .get(`https://epi-use-employee-tree.herokuapp.com/api/findall`)
@@ -69,22 +76,21 @@ function loadEmployeeData() {
     })
     .catch((error) => console.log(error));
 }
-function editable() {
-  //make document editable
-  document.querySelector("#name").removeAttribute("readonly");
-  document.querySelector("#employeenr").removeAttribute("readonly");
-  document.querySelector("#surname").removeAttribute("readonly");
-  document.querySelector("#dob").removeAttribute("readonly");
-  document.querySelector("#salary").removeAttribute("readonly");
-  document.querySelector("#manager").removeAttribute("readonly");
-  document.querySelector("#role").removeAttribute("readonly");
-}
+/**
+ *  @description shows the popup edit information page
+ */
 function openForm() {
   document.getElementById("popup").style.display = "block";
 }
+/**
+ *  @description hides the edit employee popup page
+ */
 function closeForm() {
   document.getElementById("popup").style.display = "none";
 }
+/**
+ *  @description event that deletes the employee on click
+ */
 
 $("#delete").on("click", function () {
       axios
@@ -93,7 +99,11 @@ $("#delete").on("click", function () {
       }).catch((error) => console.log(error)); 
 });
 
-
+/**
+ *  @description edits an employee event with the filled in data
+ * @returns return to employee view page on edit
+ * @returns error message if user did not fill in form correctly
+ */
 
 $("#editdata").on("click", function () {
   var name = document.getElementById("name").value;
