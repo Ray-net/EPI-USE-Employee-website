@@ -157,6 +157,10 @@ $("#editdata").on("click", function () {
     alert("You require a manager");
     return;
   }
+  if (employeesMap.get(employeenr) != undefined) {
+    alert("You need a unique employee number");
+    return;
+  }
   if(manager != '' && manager != undefined && employeesMap.get(manager) == undefined)
   {
     alert("Need an existing manager");
