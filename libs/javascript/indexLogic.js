@@ -241,6 +241,10 @@ $(".create").on("click", function () {
     alert("Date of Birth must be a date")
     return;
   }
+  if (employeesMap.get(employeenr) != undefined) {
+    alert("You need a unique employee number");
+    return;
+  }
   if(isNaN(salary))
   {
     alert("Salary must be a number")
